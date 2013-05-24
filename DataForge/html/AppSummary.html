@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AppSummary</title>
+
+<link type="text/css" media="screen" rel="stylesheet"
+	href="../stylesheets/report.css" />
+<script type="text/javascript" src="../javascripts/highcharts/jquery.min.js"></script>
+<script src="../javascripts/highcharts/highcharts.js"></script>
+<script src="../javascripts/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="../pie.js"></script>
+</head>
+<body>
+
+
+
+<div class="contentCol"><input type="hidden" value="index"
+	id="action_stats" />
+<div class="mod mod1" id="today_table">
+<div class="mod-header radius">
+<h2>今日数据<a class="icon help poptips" action-frame="tip_todayData"
+	title=""></a></h2>
+</div>
+<div class="mod-body " id="data-load">
+<table class="data-load " width="100%" border="0" cellspacing="0">
+	<thead>
+		<tr>
+			<th></th>
+			<th>新增用户</th>
+			<th>活跃用户</th>
+			<th>新增用户比例</th>
+			<th>启动次数</th>
+			<th>平均单次使用时长</th>
+		</tr>
+	</thead>
+	<tbody id="data-list">
+	</tbody>
+</table>
+<div class="wait-load"><img src='../images/pic/ajax-loader.gif' /></div>
+</div>
+
+
+</div>
+<div class="mod mod1">
+<div class="mod-header radius clearfix">
+<h2>时段分析<a class="icon help poptips" action-frame="tip_periodAna"
+	title=""></a></h2>
+<div class="option"><span class="icon export" id="export_hours"
+	title="导出"></span></div>
+</div>
+<div class="mod-body">
+<div class="content">
+<div class="tabpanel">
+<ul id="today_tabpanel_items" class="borders">
+</ul>
+</div>
+<div class="chartpanel">
+<div id="today_chartcontainer"
+	style="min-width: 400px; height: 300px; margin: 0 auto"></div>
+</div>
+<div class="contrastpanel"><a href="#" class="constr borders"
+	id="daily_constr_date">对比时段</a>
+<div id="today_constr_date_popform" class="mod singledate"
+	style="display: none;">
+<div class="mod-body"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mod mod1">
+<div class="mod-header radius clearfix">
+<h2>整体趋势<a class="icon help poptips" action-frame="tip_appTrend"
+	title=""></a></h2>
+<div class="option">
+<div class="particle">
+<ul id="trends_period"></ul>
+</div>
+</div>
+</div>
+<div class="mod-body">
+<div class="content">
+<div class="tabpanel">
+<ul id="trends_tabpanel_items" class="borders">
+</ul>
+</div>
+<div class="chartpanel">
+<div id="trends_chartcontainer"
+	style="min-width: 400px; height: 300px; margin: 0 auto"></div>
+</div>
+</div>
+</div>
+<div class="mod-bottom">
+<div class="hidden" id="totalDetails">
+<div class="mod parent-table">
+<div class="mod-header" style="border-top: 0px">
+<h2>整体趋势数据明细<a class="icon help poptips"
+	action-frame="tip_appTrend" title=""></a></h2>
+<div class="option"><span class="icon export" id="export_trends"></span>
+</div>
+</div>
+<div class="mod-body " id="data-load">
+<table class="data-load " width="100%" border="0" cellspacing="0">
+	<thead>
+		<tr>
+			<th>日期</th>
+			<th>新增用户</th>
+			<th>活跃用户</th>
+			<th>活跃用户构成</th>
+			<th>启动次数</th>
+			<th>平均使用时长</th>
+			<th>平均上传流量(KB)</th>
+			<th>平均下载流量(KB)</th>
+		</tr>
+	</thead>
+	<tbody id="data-list">
+	</tbody>
+</table>
+<div class="wait-load"><img src='../images/pic/ajax-loader.gif' /></div>
+</div>
+<div class="mod-bottom">
+<div class="fr pagination"></div>
+</div>
+
+
+</div>
+</div>
+<div class="mod mod1 showdetails"><a href="#"
+	class="expandCollapse" expand-id="totalDetails">展开明细数据</a></div>
+</div>
+</div>
+<div class="fix-column clearfix" m="15">
+<div class="col">
+<div class="mod mod1" id="scale_table">
+<div class="mod-header radius">
+<h2>应用规模<a class="icon help poptips" action-frame="tip_appScale"
+	title=""></a></h2>
+</div>
+<div class="mod-body " id="data-load">
+<table class="data-load " width="100%" border="0" cellspacing="0">
+	<thead>
+		<tr>
+		</tr>
+	</thead>
+	<tbody id="data-list">
+	</tbody>
+</table>
+<div class="wait-load"><img src='../images/pic/ajax-loader.gif' /></div>
+</div>
+
+
+</div>
+</div>
+<div class="col">
+<div class="mod mod1" id="summary_table">
+<div class="mod-header radius">
+<h2>使用摘要<a class="icon help poptips" action-frame="tip_useSum"
+	title=""></a></h2>
+</div>
+<div class="mod-body " id="data-load">
+<table class="data-load " width="100%" border="0" cellspacing="0">
+	<thead>
+		<tr>
+		</tr>
+	</thead>
+	<tbody id="data-list">
+	</tbody>
+</table>
+<div class="wait-load"><img src='../images/pic/ajax-loader.gif' /></div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+<div class="mod mod1">
+<div class="mod-header radius clearfix">
+<h2>Top 版本<a class="icon help poptips" action-frame="tip_top10Ver"
+	title=""></a></h2>
+<div class="option"><a
+	href="/apps/d00000bf14510725ce2ba015/reports/app_version">详情</a></div>
+</div>
+<div class="mod-body">
+<div class="content">
+<div class='tabpanel'>
+<ul id='top10_version_tabpanel' , class='borders'>
+</ul>
+</div>
+<div class="chartpanel">
+<div id="version_chartcontainer"
+	style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mod mod1">
+<div class="mod-header radius clearfix">
+<h2>Top 渠道<a class="icon help poptips" action-frame="tip_top10Chan"
+	title=""></a></h2>
+<div class="option"><a
+	href="/apps/d00000bf14510725ce2ba015/channels">详情</a></div>
+</div>
+<div class="mod-body">
+<div class="content">
+<div class='tabpanel'>
+<ul id='top10_channel_tabpanel' , class='borders'>
+</ul>
+</div>
+<div class="chartpanel">
+<div id="channel_chartcontainer"
+	style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- <a class="icon help poptips" action-frame="tipdemo" title="poptip"></a> -->
+<div class="">
+<div id="tip_app_dashboard">
+<div id="tip_todayData" class="tips">
+<div class="corner"></div>
+<p><span class="highlight">新增用户：</span>第一次启动应用的用户（以设备为判断标准）</p>
+<p><span class="highlight">活跃用户：</span>启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户</p>
+<p><span class="highlight">新增用户比例：</span>新增用户占活跃用户的比例，即新增用户/活跃用户</p>
+<p><span class="highlight">启动次数：</span>
+启动是通过在所有Activity中调用MobclickAgent.onResume()和MobclickAgent.onPause()方法来监测的。若用户使用过程中进入home或其他程序，经过一段时间间隔后才返回之前的应用，如间隔超过x（x可以由开发者自由设定）秒，则被认为是两次启动。
+</p>
+<p><span class="highlight">平均单次使用时长：</span>单次使用时长的均值，即应用的总使用时长/总启动次数</p>
+</div>
+<div id="tip_periodAna" class="tips">
+<div class="corner"></div>
+<p class="margin-bottom">提供了0-24时各时段内新增用户与启动次数的数据，帮您分析用户使用应用的时段规律。</p>
+<p><span class="highlight">新增用户：</span>第一次启动应用的用户（以设备为判断标准）</p>
+<p><span class="highlight">启动次数：</span>
+启动是通过在所有Activity中调用MobclickAgent.onResume()和MobclickAgent.onPause()方法来监测的。若用户使用过程中进入home或其他程序，经过一段时间间隔后才返回之前的应用，如间隔超过x（x可以由开发者自由设定）秒，则被认为是两次启动。
+</p>
+</div>
+<div id="tip_appTrend" class="tips">
+<div class="corner"></div>
+<p class="margin-bottom">展示了应用在一段时期内的变化趋势，方便您跟踪和评估应用的运营状况。</p>
+<p><span class="highlight">新增用户：</span>第一次启动应用的用户（以设备为判断标准）</p>
+<p><span class="highlight">活跃用户：</span>启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户</p>
+<p><span class="highlight">活跃用户构成：</span>每日活跃用户中新用户与老用户的分布</p>
+<p><span class="highlight">启动次数：</span>
+启动是通过在所有Activity中调用MobclickAgent.onResume()和MobclickAgent.onPause()方法来监测的。若用户使用过程中进入home或其他程序，经过一段时间间隔后才返回之前的应用，如间隔超过x（x可以由开发者自由设定）秒，则被认为是两次启动。
+</p>
+<p><span class="highlight">平均单次使用时长：</span>单次使用时长的均值，即应用的总使用时长/总启动次数
+
+
+
+
+
+<p><span class="highlight">平均上传流量：</span>平均每次使用应用发送到网络的数据流量（单位：KB），只支持Android平台</p>
+<p><span class="highlight">平均下载流量：</span>平均每次使用应用接收网络传回的数据流量（单位：KB），只支持Android平台</p>
+</p>
+</div>
+<div id="tip_appScale" class="tips">
+<div class="corner"></div>
+<p><span class="highlight">累计用户：</span>截止到现在，启动过应用的所有独立用户（去重，以设备为判断标准）</p>
+<p><span class="highlight">过去7天活跃用户：</span>过去7天启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户</p>
+<p><span class="highlight">过去7天活跃占比：</span>过去7天的活跃用户占累计用户的比例</p>
+<p><span class="highlight">过去30天活跃用户：</span>过去30天启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户</p>
+<p><span class="highlight">过去30天活跃占比：</span>过去30天的活跃用户占累计用户的比例</p>
+</div>
+<div id="tip_useSum" class="tips">
+<div class="corner"></div>
+<p><span class="highlight">累计启动(人均)：</span>截止到现在，应用的总启动次数（累计启动/累计用户）</p>
+<p><span class="highlight">平均单次使用时长：</span>单次使用时长的均值，即应用的总使用时长/总启动次数</p>
+<p><span class="highlight">平均日使用时长：</span>日使用时长的均值，即全部用户的日使用时长/总活跃用户</p>
+<p>这里展示的是过去7天的平均单次使用时长的均值、过去7天的平均日使用时长的均值。</p>
+</div>
+<div id="tip_top10Ver" class="tips">
+<div class="corner"></div>
+<p>新增用户展示的是按今日新增排名Top5版本的今日与昨日用户新增情况。活跃用户展示的是按今日活跃排名的Top5版本的今日与昨日用户活跃情况。累计用户展示的是截至今日Top10版本的累计用户数。</p>
+<p>通过详情可以跳转到版本分布页面。</p>
+</div>
+<div id="tip_top10Chan" class="tips">
+<div class="corner"></div>
+<p>新增用户展示的是按今日新增排名Top5渠道的今日与昨日用户新增情况。活跃用户展示的是按今日活跃排名的Top5渠道的今日与昨日用户活跃情况。累计用户展示的是截至今日Top10渠道的累计用户数。</p>
+<p>通过详情可以跳转到渠道列表页面。</p>
+</div>
+</div>
+</div>
+<input type="button" value="abc" id="abc">
+
+
+</div>
+
+
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	<div id="chart_pie" ></div>
+
+</body>
+</html>

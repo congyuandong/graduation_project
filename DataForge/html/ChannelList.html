@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ChannelList</title>
+<link type="text/css" media="screen" rel="stylesheet"
+	href="../stylesheets/report.css" />
+<script type="text/javascript" src="../javascripts/highcharts/jquery.min.js"></script>
+<script src="../javascripts/highcharts/highcharts.js"></script>
+<script src="../javascripts/highcharts/modules/exporting.js"></script>
+<script src="../javascripts/charts/channellist.js"></script>
+</head>
+<body>
+<div class="contentCol"><input value="list" id="action_stats"
+	type="hidden">
+<div class="operations">
+<div class="bd3">
+<div class="contentCol">
+<div class="filterPanel">
+
+</div>
+</div>
+</div>
+</div>
+<div class="mod mod1">
+<div class="mod-header radius clearfix">
+<h2>Top10渠道<a class="icon help poptips" action-frame="tip_channels"
+	title=""></a></h2>
+</div>
+<div class="mod-body">
+<div class="content">
+
+<div class="chartpanel">
+<div data-highcharts-chart="0" id="chartcontainer"
+	style="min-width: 400px; height: 300px; margin: 0 auto;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mod2">
+<div class="mod-select mod-select-default" id="channellist">
+
+<div style="display: none;" class="select-body">
+<ul class="select-list">
+</ul>
+<div class="load" style="margin: 10px auto; text-align: center;"><img
+	src="/images/pic/ajax-loader.gif"></div>
+</div>
+</div>
+
+</div>
+<div class="mod mod1" id="data-load-channels">
+<div class="mod-header radius clearfix">
+<h2>
+<div class="mod-select mod-select-default2" id="channelgroup"><span
+	class="select-head"><span class="selected" id="">全部</span><b
+	class="icon pulldown pullspace"></b></span>
+<div style="display: none;" class="select-body">
+<ul class="select-list cum-list-1">
+	<li><a href="javascript:;" class="event" id="">全部</a></li>
+	<li><a href="javascript:;" class="event" id="nil">未分组</a></li>
+</ul>
+<div class="load"><img src="/images/pic/ajax-loader.gif"></div>
+<div class="linkoption"><a
+	href="/apps/50000069d4510725429cc105/channels/accounts">管理分组</a></div>
+</div>
+</div>
+<span class="midspace"></span><a class="icon help poptips"
+	action-frame="tip_channelList" title=""></a></h2>
+<div class="option">
+<div class="particle">
+<ul id="daytime">
+	<li particle="today" flag="true" class="on">今日</li>
+	<li particle="yesterday" flag="true" class="">昨日</li>
+</ul>
+</div>
+<span class="icon export export_list" title="导出"></span></div>
+</div>
+<div class="mod-body " id="data-load">
+<table class="data-load " width="100%" border="0" cellspacing="0">
+	<thead>
+		<tr>
+			<th>渠道名</th>
+			<th>新增用户</th>
+			<th>活跃用户</th>
+			<th>累计用户(占比)</th>
+		</tr>
+	</thead>
+	<tbody id="data-list">
+		<tr></tr>
+	</tbody>
+</table>
+<div style="display: none;" class="wait-load"><img
+	src="/images/pic/ajax-loader.gif"></div>
+</div>
+<div style="display: none;" class="mod-bottom">
+<div class="fr pagination"></div>
+</div>
+
+
+</div>
+
+<!-- <a class="icon help poptips" action-frame="tipdemo" title="poptip"></a> -->
+<div class="">
+<div id="tip_channel">
+<div id="tip_channels" class="tips">
+<div class="corner"></div>
+<p class="margin-bottom">展示了累计用户排名前10的各渠道变化趋势，可以帮助您了解每个渠道的用户新增与活跃，新渠道的推广效果，制定合适的推广策略。</p>
+<p><span class="highlight">新增用户：</span>第一次启动应用的用户（以设备为判断标准）</p>
+<p><span class="highlight">活跃用户：</span>启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户</p>
+<p><span class="highlight">启动次数：</span>
+启动是通过在所有Activity中调用MobclickAgent.onResume()和MobclickAgent.onPause()方法来监测的。若用户使用过程中进入home或其他程序，经过一段时间间隔后才返回之前的应用，如间隔超过x（x可以由开发者自由设定）秒，则被认为是两次启动。
+</p>
+<p><span class="highlight">单次使用时长：</span>一次启动的使用时长</p>
+<p><span class="highlight">次日留存率：</span>该渠道某一天的新增用户次日仍使用应用的比例</p>
+</div>
+<div style="display: none; left: 450px; top: 654.5px;"
+	id="tip_channelList" class="tips">
+<div class="corner"></div>
+<p><span class="highlight">新增用户：</span>第一次启动应用的用户（以设备为判断标准）</p>
+<p><span class="highlight">活跃用户：</span>启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户</p>
+<p><span class="highlight">累计用户（占比）：</span>截止到现在，启动过应用的所有独立用户（占累计用户总数的比例）</p>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
