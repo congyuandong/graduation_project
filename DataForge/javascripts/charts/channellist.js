@@ -2,27 +2,24 @@
  * 
  */
 
-var options = {
+var options1 = {
 	chart : {
-		renderTo: 'chartcontainer',
+		renderTo : 'channellist1',
 		type : 'bar'
 	},
 	title : {
-		text : 'Historic World Population by Region'
-	},
-	subtitle : {
-		text : 'Source: Wikipedia.org'
+		text : '应用渠道下载量统计'
 	},
 	xAxis : {
-		categories : [ 'Africa', 'America', 'Asia', 'Europe', 'Oceania' ],
+		categories : [ 'AppChina', 'goapk', 'hiapk', '91', 'gfan' ],
 		title : {
-			text : null
+			text : '渠道'
 		}
 	},
 	yAxis : {
 		min : 0,
 		title : {
-			text : 'Population (millions)',
+			text : '下载量',
 			align : 'high'
 		},
 		labels : {
@@ -30,7 +27,7 @@ var options = {
 		}
 	},
 	tooltip : {
-		valueSuffix : ' millions'
+		valueSuffix : ' 次'
 	},
 	plotOptions : {
 		bar : {
@@ -54,31 +51,76 @@ var options = {
 		enabled : false
 	},
 	series : [ {
-		name : 'Year 1800',
-		data : [ 107, 31, 635, 203, 2 ]
-	}]
+		name : '5月份下载量',
+		data : [ 107, 31, 135, 203, 2 ]
+	} ]
 
 };
+
+var options2 = {
+	chart : {
+		renderTo : 'channellist2',
+		plotBackgroundColor : null,
+		plotBorderWidth : null,
+		plotShadow : false
+	},
+	title : {
+		text : '应用渠道下载量分布图'
+	},
+	tooltip : {
+		pointFormat : '{series.name}: <b>{point.percentage}%</b>',
+		percentageDecimals : 1
+	},
+	plotOptions : {
+		pie : {
+			allowPointSelect : true,
+			cursor : 'pointer',
+			dataLabels : {
+				enabled : true,
+				color : '#000000',
+				connectorColor : '#000000',
+				formatter : function() {
+					return '<b>' + this.point.name + '</b>: '
+							+ this.percentage.toFixed(2) + ' %';
+				}
+			}
+		}
+	},
+	exporting:{
+		filename : 'channelpie',
+		enabled :true
+	},
+	series : []
+};
+
 $(document).ready(function() {
 	$.ajax({
-	    url: '/DataForge/getdata/channellist.php',
-	    method: 'get',
-	    dataType: 'json',
-	    success:function(data){
-	    	alert(data);
-	    	//var series = {	
-	    	//};
-	    	//series.name = 'search engine';
-	    	//series.type = 'pie'
-	    	//series.data = [["google",1239],["\u767e\u5ea6",998],["\u641c\u641c",342],["\u5fc5\u5e94",421],["\u641c\u72d7",259],["\u5176\u4ed6",83]];
-	    	//series.data = data;
-	    	//series.data.push(data);
-	    	//alert(series.data[0]);
-	        //alert( data + "\n" + series.data);
-	    	//options.series.push(series);
-	    	//alert(options.series));
-	    	var chart1 = new Highcharts.Chart(options);
-	    }
-	    });
-});
+		url : '/DataForge/getdata/channellist.php',
+		method : 'get',
+		dataType : 'json',
+		success : function(data) {
+			var series = {};
+			series.name = '6月份下载量';
+			series.data = data;
+			options1.series.push(series);
+			var chart1 = new Highcharts.Chart(options1);
 
+		}
+	});
+
+	$.ajax({
+		url : '/DataForge/getdata/channelpie.php',
+		method : 'get',
+		dataType : 'json',
+		success : function(data) {
+			//alert(data);
+			var series = {};
+			series.name = 'search engine';
+			series.type = 'pie'
+			series.data = data;
+			options2.series.push(series);
+			var chart2 = new Highcharts.Chart(options2);
+		}
+	});
+
+});
