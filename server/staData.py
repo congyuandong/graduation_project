@@ -22,9 +22,16 @@ def findAppList():
 	applist = dbappinfo.distinct("AppId")
 	return applist
 
+#返回应用渠道列表
 def findChannelList():
-	appchannellist = dbappinfo.distinct("AppChannel");
+	appchannellist = dbappinfo.distinct("AppChannel")
 	return appchannellist
+
+#返回应用版本列表
+def findVersionLIst():
+	appversionlist = dbappinfo.distinct("versionName")
+	appversionlist.sort()
+	return appversionlist
 
 #统计每个应用新增用户
 def staNewUser(applist):
@@ -49,6 +56,12 @@ def staChannel(applist,appchannellist):
 def staVersion(applist,appversionlist):
 	dbappversion.remove()
 	print 'remove all from dbappversion'
+	for appid in applist:
+		for appversion in appversionlist:
+			versioncount = dbappinfo.find({"AppId":appid,"versionName":appversion}).count()
+			#print appid,appversion,versioncount
+			dbappversion.insert({"AppId":appid,"AppVersion":appversion,"VersionCount":versioncount})
+	print 'finish insert into dbappversion'
 
 #统计网络类型
 def staNetWork(applist):
@@ -66,7 +79,10 @@ def staNetWork(applist):
 if __name__ == '__main__':
 	applist = findAppList()
 	appchannellist = findChannelList()
+	appversionlist = findVersionLIst()
+
 	staChannel(applist,appchannellist)
 	staNetWork(applist)
+	staVersion(applist,appversionlist)
 	
 	#staNewUser(applist)
